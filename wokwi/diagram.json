@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "author": "Yogi Dwi prasetyo",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 9.6, "left": 43.24, "attrs": {} },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": 144.3,
+      "left": 186.6,
+      "attrs": { "temperature": "45.3", "humidity": "73.5" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 282.65,
+      "left": 142.6,
+      "rotate": 180,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 3.4,
+      "left": 181.55,
+      "rotate": 270,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -61.2,
+      "left": 157.8,
+      "attrs": { "color": "red", "flip": "1" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": -64.8,
+      "left": 241.8,
+      "attrs": { "volume": "0.1" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "r2:1", "dht1:SDA", "red", [ "h0" ] ],
+    [ "esp:3V3", "dht1:VCC", "red", [ "h-19.05", "v211.2" ] ],
+    [ "esp:21", "dht1:SDA", "yellow", [ "h124.8", "v201.6", "h-57.6" ] ],
+    [ "esp:GND.3", "dht1:GND", "black", [ "h115.2", "v172.8" ] ],
+    [ "r2:2", "dht1:VCC", "red", [ "v0", "h-8.4", "v-67.2" ] ],
+    [ "r1:1", "esp:GND.3", "black", [ "h0", "v38.4" ] ],
+    [ "led1:C", "r1:2", "green", [ "v0" ] ],
+    [ "led1:A", "esp:22", "red", [ "v0" ] ],
+    [ "bz1:1", "esp:GND.3", "black", [ "v76.8", "h-67.2", "v-19.2" ] ],
+    [ "bz1:2", "esp:23", "red", [ "v28.8", "h-134.8" ] ]
+  ],
+  "dependencies": {}
+}
